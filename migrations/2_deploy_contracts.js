@@ -14,7 +14,11 @@ module.exports = async function(deployer) {
   fs.writeFile('../truffle_data/contracts.json', JSON.stringify({
     ryc: RyoiiCoin.address,
     nft: RyoiiNFT.address,
-  }));
+  }), (err) => {
+    if (err) {
+      console.error(err);
+    }
+  });
 
   deployer.link(RyoiiNFT, [ERC721, ERC721URIStorage, ERC721Burnable, Ownable]);
 };
